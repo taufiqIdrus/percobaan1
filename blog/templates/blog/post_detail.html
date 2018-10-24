@@ -1,0 +1,23 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <article class="media content-section">
+        <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">{{ object.author }}</a>
+                <small class="text-muted">{{ object.date_posted|date:"d F, Y" }}</small>
+                {% if object.author == user %}
+                    <div>
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Perbarui</a>
+                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Hapus</a>
+                    </div>
+                {% endif %}
+            </div>
+            <h2 class="article-title"> {{ object.nama_game }}</h2>
+            <p class="article-content">Harga game: {{ post.harga_game }}</p>
+            <p class="article-content">Developer game: {{ post.developer_game }}</p>
+            <p class="article-content">Genre game: {{ post.genre_game }}</p>
+            <p class="article-content">Platform game: {{ post.platform_game }}</p>
+        </div>
+    </article>
+{% endblock content%}
